@@ -1,10 +1,20 @@
+$body-bg: #44c0b54d;
+// $body-bg: hsla(266, 61%, 50%, 0.129);
 
-$body-bg: #f3f3f3;
-// $theme-colors: (
-//     "info": tomato,
-//     "danger": teal,
-//     "success": green,
-// );
 $primary: rgb(120, 55, 206);
+$success: rgb(14, 128, 67);
+$danger: rgb(201, 53, 27);
+$secondary: rgb(101, 125, 173);
 
 @import "~bootstrap/scss/bootstrap";
+
+
+.bg-Dead {
+    @extend .bg-danger;
+}
+.bg-Alive {
+  @extend .bg-success;
+}
+.bg-unknown {
+  @extend .bg-secondary;
+}
