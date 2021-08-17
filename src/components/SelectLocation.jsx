@@ -26,10 +26,13 @@ export default function SelectLocation({ locations, location, onSelect, isLoadin
           <option value="" disabled>
             Localizaciones...
           </option>
+
+          {/* Location options ↓ */}
           {locations.map((loc) => (
             <option key={loc.id}>{loc.name}</option>
           ))}
         </Form.Select>
+
         <div
           style={{ right: '13px', backgroundColor: 'white', opacity: '85%' }}
           className="ms-1 position-absolute"
@@ -37,11 +40,12 @@ export default function SelectLocation({ locations, location, onSelect, isLoadin
           <SpinLoader isLoading={isLoading} size="md" />
         </div>
       </div>
+
       <CloseButton
         onClick={clearSelect}
         className={`ms-2 ${visibleClear}`}
         variant="white"
-        aria-label="Hide"
+        aria-label="Descartar filtro"
       />
     </Form>
   );

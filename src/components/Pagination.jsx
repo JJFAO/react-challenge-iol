@@ -1,11 +1,11 @@
+import { scrollToTop } from 'hooks/useScrollToTop';
 import SpinLoader from './SpinLoader';
 
 export default function Pagination({ currentPage = 1, totalPages = 0, onSetPage, isLoading }) {
   const handleSetPage = (n) => {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    onSetPage(n)
-  }
+    scrollToTop();
+    onSetPage(n);
+  };
   const pagination = () => {
     const pages = [];
     let count = 0;

@@ -6,14 +6,18 @@ import Pagination from 'components/Pagination';
 import SpinLoader from 'components/SpinLoader';
 import { useFetchAll } from 'hooks/useFetch';
 import SelectLocation from 'components/SelectLocation';
+import { useFavoritesContext } from '../context/favoritesContext';
+import { useScrollToTopOnMount } from 'hooks/useScrollToTop';
 
 export default function Landing() {
+  useScrollToTopOnMount();
   const [characters, setCharacters] = useState([]);
   const [locations, isLoadingLocations] = useFetchAll(`${API_URL}/location`);
   const [allCharacters, isLoadingCharacters] = useFetchAll(`${API_URL}/character`);
   const [totalPages, setTotalPages] = useState(0);
   const [page, setPage] = useState(1);
   const [location, setLocation] = useState('');
+  const { toggleFavorite, favorites } = useFavoritesContext();
 
   useEffect(() => {
     const limit = 15;
@@ -28,11 +32,13 @@ export default function Landing() {
     setTotalPages(totalPages);
   }, [allCharacters, page, location]);
 
-  const charactersMap = characters.map((char) => <CharacterCard key={char.id} character={char} />);
-
   const handleSelect = (value) => {
     setPage(1);
     setLocation(value);
+  };
+
+  const isFavorite = (id) => {
+    return favorites.some((fav) => fav === id);
   };
 
   return (
@@ -47,13 +53,17 @@ export default function Landing() {
       </NavBar>
 
       <div className="container" style={{ minHeight: '80vh' }}>
+        <h2 className="text-center mt-3">Personajes</h2>
         <div className="d-flex flex-wrap justify-content-center align-items-center">
           {/* Characters cards ↓ */}
-          {charactersMap}
-
-          {/* {characters.map((char) => (
-          <CharacterCard key={char.id} character={char} />
-          ))} */}
+          {characters.map((char) => (
+            <CharacterCard
+              key={char.id}
+              character={char}
+              onToggleFavorite={() => toggleFavorite(char.id)}
+              isFavorite={isFavorite(char.id)}
+            />
+          ))}
 
           <div className="position-absolute" style={{ top: '50vh', left: '50%' }}>
             {<SpinLoader size="lg" isLoading={isLoadingCharacters} style={{ marginLeft: '-50%' }} />}
