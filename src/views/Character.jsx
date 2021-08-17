@@ -1,11 +1,17 @@
 import CharacterDetail from 'components/CharacterDetail';
 import NavBar from 'components/NavBar';
-import { Button } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import backIcon from '../assets/back.svg';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { API_URL } from 'config/api';
+import { useFetch } from 'hooks/useFetch';
+import SpinLoader from 'components/SpinLoader';
 
 export default function Character() {
   const history = useHistory();
+  const { charId } = useParams();
+  const [character, isLoading] = useFetch(`${API_URL}/character/${charId}`);
+
   return (
     <>
       <NavBar>
@@ -14,7 +20,12 @@ export default function Character() {
         </Button>
       </NavBar>
 
-      <CharacterDetail />
+      <Container className="d-flex">
+        <CharacterDetail character={character} />
+        <div className="position-absolute" style={{ top: '50vh', left: '50%' }}>
+          {<SpinLoader size="lg" isLoading={isLoading} style={{ marginLeft: '-50%' }} />}
+        </div>
+      </Container>
     </>
   );
 }
