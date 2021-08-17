@@ -33,7 +33,7 @@ export default function Landing() {
   return (
     <>
       <NavBar>
-        <SelectLocation locations={locations} onSelect={setLocation} isLoading={isLoadingLocations} />
+        <SelectLocation location={location} locations={locations} onSelect={setLocation} isLoading={isLoadingLocations} />
       </NavBar>
 
       <div className="container" style={{ minHeight: '80vh' }}>
