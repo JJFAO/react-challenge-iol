@@ -1,11 +1,12 @@
 import Routes from './Routes';
 import './App.scss';
+import { FavoritesProvider } from 'context/favoritesContext';
 
 function App() {
   return (
-    <div>
+    <FavoritesProvider>
       <Routes />
-    </div>
+    </FavoritesProvider>
   );
 }
 
