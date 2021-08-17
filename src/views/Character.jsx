@@ -15,7 +15,7 @@ export default function Character() {
   return (
     <>
       <NavBar>
-        <Button onClick={history.goBack} className="py-1" variant="primary">
+        <Button onClick={history.goBack} className="py-1" variant="outline-primary">
           <img style={{ width: '1.8rem' }} src={backIcon} alt="" />
         </Button>
       </NavBar>
