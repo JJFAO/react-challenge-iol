@@ -1,3 +1,4 @@
+import Footer from 'components/Footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Character from 'views/Character';
 import Landing from 'views/Landing';
@@ -17,6 +18,8 @@ export default function Routes() {
           <NotFound />
         </Route>
       </Switch>
+
+      <Footer />
     </Router>
   );
 }
