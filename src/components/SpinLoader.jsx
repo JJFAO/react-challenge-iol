@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 
-export default function SpinLoader({ isLoading = true, size = 'md', ms = 400, ...rest }) {
+export default function SpinLoader({ isLoading = true, size = 'md', ms = 400, style, ...rest }) {
   const remSize = { sm: '1rem', lg: '5rem', md: '1rem' };
   const [show, setShow] = useState(true);
 
@@ -28,6 +28,7 @@ export default function SpinLoader({ isLoading = true, size = 'md', ms = 400, ..
           opacity: isLoading ? 1 : 0,
           width: remSize[size],
           height: remSize[size],
+          ...style,
         }}
         animation="border"
         role="status"

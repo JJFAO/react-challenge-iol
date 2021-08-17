@@ -28,10 +28,11 @@ export function useFetchAll(url) {
 
     (async function () {
       setIsAnyLoading(true);
-      const pageNumbers = new Array(data.info.pages);
-      const promises = pageNumbers.map((page) => axios.get(url, { params: { page } }));
+      const pages = data.info.pages;
+      const promises = [...new Array(pages)].map((_, i) => axios.get(url, { params: { page: i + 1 } }));
       const allResponses = await Promise.all(promises);
-      setAllData(allResponses);
+      const allResults = allResponses.reduce((acc, curr) => ([...acc, ...curr.data.results]), [])
+      setAllData(allResults);
       setIsAnyLoading(false);
     })();
   }, [url, data, isLoading]);

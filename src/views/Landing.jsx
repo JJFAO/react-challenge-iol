@@ -1,78 +1,62 @@
 import { useEffect, useState } from 'react';
 import CharacterCard from 'components/CharacterCard';
-import axios from 'axios';
 import { API_URL } from 'config/api';
 import NavBar from 'components/NavBar';
 import Pagination from 'components/Pagination';
 import SpinLoader from 'components/SpinLoader';
-import { Form } from 'react-bootstrap';
+import { useFetchAll } from 'hooks/useFetch';
+import SelectLocation from 'components/SelectLocation';
 
 export default function Landing() {
   const [characters, setCharacters] = useState([]);
-  const [info, setInfo] = useState({});
+  const [locations, isLoadingLocations] = useFetchAll(`${API_URL}/location`);
+  const [allCharacters, isLoadingCharacters] = useFetchAll(`${API_URL}/character`);
+  const [totalPages, setTotalPages] = useState(0);
   const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
   const [location, setLocation] = useState();
-  const [locations, setLocations] = useState([]);
 
   useEffect(() => {
-    (async function () {
-      const res = await axios.get(`${API_URL}/location`);
-      const locationsNames = res.data.results;
-      setLocations(locationsNames);
-    })();
-  }, []);
+    const limit = 4;
+    const start = 0 + page * limit - limit;
+    const end = start + limit;
 
-  useEffect(() => {
-    (async function () {
-      setIsLoading(true);
-      const params = { count: 15, page, location };
-      const res = await axios.get(`${API_URL}/character`, { params });
-      setCharacters(res.data.results);
-      setInfo(res.data.info);
-      setIsLoading(false);
-    })();
-  }, [page, location]);
+    const charactersFiltered = allCharacters.filter((char) => !location || char.location.name === location);
+    const charactersSlice = charactersFiltered.slice(start, end);
+    setCharacters(charactersSlice);
 
-  const handleSelect = (e) => {
-    setLocation(e.target.value);
-  };
+    const totalPages = Math.ceil(charactersFiltered.length / limit);
+    setTotalPages(totalPages);
+  }, [allCharacters, page, location]);
 
   const charactersMap = characters.map((char) => <CharacterCard key={char.id} character={char} />);
 
   return (
     <>
       <NavBar>
-        <Form className="d-flex">
-          <Form.Select
-            placeholder="Localizaciones..."
-            aria-label="Filtro por localización"
-            className="mr-2"
-            style={{ width: '12rem' }}
-            onChange={handleSelect}
-          >
-            <option disabled>Localizaciones...</option>
-            {locations.map((loc) => (
-              <option key={loc.id} value={loc.id}>
-                {loc.name}
-              </option>
-            ))}
-          </Form.Select>
-        </Form>
+        <SelectLocation locations={locations} onSelect={setLocation} isLoading={isLoadingLocations} />
       </NavBar>
 
-      <div
-        className="container d-flex flex-wrap justify-content-evenly align-items-center"
-        style={{ minHeight: '100vh' }}
-      >
-        {charactersMap}
+      <div className="container" style={{ minHeight: '80vh' }}>
+        <div className="d-flex flex-wrap justify-content-center align-items-center">
+          {/* Characters cards ↓ */}
+          {charactersMap}
 
-        <div className="position-absolute" style={{ top: '50vh' }}>
-          {<SpinLoader size="lg" isLoading={isLoading} />}
+          {/* {characters.map((char) => (
+          <CharacterCard key={char.id} character={char} />
+          ))} */}
+
+          <div className="position-absolute" style={{ top: '50vh', left: '50%' }}>
+            {<SpinLoader size="lg" isLoading={isLoadingCharacters} style={{ marginLeft: '-50%' }} />}
+          </div>
         </div>
       </div>
 
-      <Pagination currentPage={page} totalPages={info.pages} onSetPage={setPage} isLoading={isLoading} />
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        onSetPage={setPage}
+        isLoading={isLoadingCharacters}
+      />
     </>
   );
 }
