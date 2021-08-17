@@ -9,8 +9,7 @@ export function useFetch(url, initialState = {}) {
     (async function () {
       setIsLoading(true);
       const res = await axios.get(url);
-      const locationsNames = res.data;
-      setData(locationsNames);
+      setData(res.data);
       setIsLoading(false);
     })();
   }, [url]);

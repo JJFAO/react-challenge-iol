@@ -7,7 +7,7 @@ export default function SelectLocation({ locations, location, onSelect, isLoadin
   };
 
   const clearSelect = () => {
-    onSelect();
+    onSelect('');
   };
 
   const visibleClear = location ? '' : 'invisible';
@@ -20,8 +20,8 @@ export default function SelectLocation({ locations, location, onSelect, isLoadin
           aria-label="Filtro por localización"
           style={{ width: '12rem' }}
           onChange={handleSelect}
-          defaultValue=""
           disabled={isLoading}
+          value={location}
         >
           <option value="" disabled>
             Localizaciones...

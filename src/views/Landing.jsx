@@ -13,10 +13,10 @@ export default function Landing() {
   const [allCharacters, isLoadingCharacters] = useFetchAll(`${API_URL}/character`);
   const [totalPages, setTotalPages] = useState(0);
   const [page, setPage] = useState(1);
-  const [location, setLocation] = useState();
+  const [location, setLocation] = useState('');
 
   useEffect(() => {
-    const limit = 4;
+    const limit = 15;
     const start = 0 + page * limit - limit;
     const end = start + limit;
 
@@ -30,10 +30,20 @@ export default function Landing() {
 
   const charactersMap = characters.map((char) => <CharacterCard key={char.id} character={char} />);
 
+  const handleSelect = (value) => {
+    setPage(1);
+    setLocation(value);
+  };
+
   return (
     <>
       <NavBar>
-        <SelectLocation location={location} locations={locations} onSelect={setLocation} isLoading={isLoadingLocations} />
+        <SelectLocation
+          location={location}
+          locations={locations}
+          onSelect={handleSelect}
+          isLoading={isLoadingLocations}
+        />
       </NavBar>
 
       <div className="container" style={{ minHeight: '80vh' }}>
