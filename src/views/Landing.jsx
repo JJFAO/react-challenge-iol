@@ -52,7 +52,7 @@ export default function Landing() {
         />
       </NavBar>
 
-      <div className="container" style={{ minHeight: '80vh' }}>
+      <div className="container min-h80">
         <h2 className="text-center text-white mt-3 glass-title m-auto pt-1 pb-2">Personajes</h2>
         <div className="d-flex flex-wrap justify-content-center align-items-center">
           {/* Characters cards ↓ */}
@@ -65,8 +65,8 @@ export default function Landing() {
             />
           ))}
 
-          <div className="position-absolute" style={{ top: '50vh', left: '50%' }}>
-            {<SpinLoader size="lg" isLoading={isLoadingCharacters} style={{ marginLeft: '-50%' }} />}
+          <div className="position-absolute center-spinner">
+            {<SpinLoader size="lg" isLoading={isLoadingCharacters} />}
           </div>
         </div>
       </div>

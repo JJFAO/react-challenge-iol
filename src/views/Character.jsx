@@ -24,8 +24,9 @@ export default function Character() {
 
       <Container className="d-flex">
         <CharacterDetail character={character} />
-        <div className="position-absolute" style={{ top: '50vh', left: '50%' }}>
-          {<SpinLoader size="lg" isLoading={isLoading} style={{ marginLeft: '-50%' }} />}
+
+        <div className="position-absolute center-spinner">
+          {<SpinLoader size="lg" isLoading={isLoading}/>}
         </div>
       </Container>
     </>

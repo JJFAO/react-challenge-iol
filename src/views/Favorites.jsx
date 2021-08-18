@@ -28,7 +28,7 @@ export default function Favorites() {
         </Button>
       </NavBar>
 
-      <Container style={{ minHeight: '80vh' }}>
+      <Container className="min-h80">
         <h2 className="text-center text-white mt-3 glass-title m-auto pt-1 pb-2">Favoritos</h2>
         <div className="d-flex flex-wrap justify-content-center">
           {/* Favorite Characters cards ↓ */}
@@ -41,8 +41,8 @@ export default function Favorites() {
             />
           ))}
 
-          <div className="position-absolute" style={{ top: '50vh', left: '50%' }}>
-            {<SpinLoader size="lg" isLoading={isLoading} style={{ marginLeft: '-50%' }} />}
+          <div className="position-absolute center-spinner">
+            {<SpinLoader size="lg" isLoading={isLoading} />}
           </div>
         </div>
       </Container>

@@ -5,17 +5,17 @@ export default function CharacterDetail({ character }) {
   const imageUrl = `https://rickandmortyapi.com/api/character/avatar/${id}.jpeg`;
 
   return (
-    <Card className="mx-auto my-4 p-1 glass-card text-light" style={{ width: '32rem' }}>
+    <Card className="mx-auto my-4 p-3 glass-card text-light" style={{ width: '32rem' }}>
       <Ratio aspectRatio={1 / 1.001}>
         <Card.Img variant="top" src={imageUrl} />
       </Ratio>
 
       <Card.Body>
-        <Card.Title style={{ height: '2em', marginBottom: '15px' }}>{name}</Card.Title>
+        <Card.Title title={name} className="text-truncate">{name}</Card.Title>
 
-        <p style={{ height: '2em', marginBottom: '25px' }}>{species}</p>
-        <p style={{ height: '2em', marginBottom: '25px' }}>{origin?.name}</p>
-        <p style={{ height: '2em', marginBottom: '25px' }}>{location?.name}</p>
+        <p title={species} className="text-truncate"><span>Especie: </span> {species}</p>
+        <p title={origin?.name} className="text-truncate"><span>Origen: </span>{origin?.name}</p>
+        <p title={location?.name} className="text-truncate"><span>Localización: </span>{location?.name}</p>
       </Card.Body>
 
       <Card.Footer>

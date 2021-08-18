@@ -1,5 +1,6 @@
 @import "custom";
 
+// Status Badges
 .bg-Dead {
   @extend .bg-danger;
 }
@@ -12,7 +13,7 @@
 
 body {
   font-family: "NewYork";
-  background-image:  linear-gradient(to right, #8e2de247, #4a00e066), url("./assets/Rick-and-morty.png");
+  background-image: linear-gradient(to right, #8e2de247, #4a00e066), url("./assets/Rick-and-morty.png");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
@@ -22,15 +23,19 @@ span {
   font-family: "cream";
 }
 
-body::-webkit-scrollbar-track {
+// Scrollbars
+body::-webkit-scrollbar-track,
+select::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(193, 162, 243, 0.3);
   background-color: #dacbf0f3;
 }
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,
+select::-webkit-scrollbar {
   width: 10px;
   background-color: #f5effd;
 }
 body::-webkit-scrollbar-thumb {
+  // background-image: linear-gradient(to bottom, #3c18a0, #3c18a0c0, #3400e071, #5318db6e);
   background-image: -webkit-gradient(
     linear,
     left bottom,
@@ -40,7 +45,11 @@ body::-webkit-scrollbar-thumb {
     color-stop(0.86, rgb(70, 36, 149))
   );
 }
+select::-webkit-scrollbar-thumb {
+  background: blueviolet;
+}
 
+// Glassmorphism
 .glass-card {
   backdrop-filter: blur(10px) saturate(180%);
   -webkit-backdrop-filter: blur(10px) saturate(180%);
@@ -48,12 +57,29 @@ body::-webkit-scrollbar-thumb {
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
-
 .glass-title {
   @extend .glass-card;
   width: 15rem;
 }
 
+// Spinner
+.center-spinner {
+  top: 50vh;
+  left: 50%;
+  div {
+    margin-left: -50%;
+  }
+}
+.input-spinner {
+  right: 13px;
+  background-color: rgba(241, 241, 241, 0.733);
+  opacity: 85%;
+}
+
+// Main Container
+.min-h80 {
+  min-height: 80vh;
+}
 
 // Fonts
 @font-face {
