@@ -9,7 +9,7 @@ export default function CharacterCard({ character, isFavorite, onToggleFavorite 
   const imageUrl = `https://rickandmortyapi.com/api/character/avatar/${id}.jpeg`;
 
   return (
-    <Card className="m-3 position-relative" style={{ width: '18rem' }}>
+    <Card className="m-3 p-2 position-relative glass-card text-light" style={{ width: '18rem' }}>
       <Ratio aspectRatio={1 / 1.001}>
         <Card.Img variant="top" src={imageUrl} />
       </Ratio>
@@ -20,11 +20,11 @@ export default function CharacterCard({ character, isFavorite, onToggleFavorite 
       </button>
 
       <Card.Body className="text-center">
-        <Card.Title style={{ height: '2em', marginBottom: '15px' }}>{name}</Card.Title>
+        <Card.Title title={name} className="text-truncate">{name}</Card.Title>
 
-        <p style={{ height: '2em', marginBottom: '25px' }}>{species}</p>
-        <p style={{ height: '2em', marginBottom: '25px' }}>{origin?.name}</p>
-        <p style={{ height: '2em', marginBottom: '25px' }}>{location.name}</p>
+        <p title={species} className="text-truncate">{species}</p>
+        <p title={origin?.name} className="text-truncate">{origin?.name}</p>
+        <p title={location.name} className="text-truncate">{location.name}</p>
 
         <Button className="mb-1" as={Link} to={`character/${id}`} variant="primary">
           Ver detalle

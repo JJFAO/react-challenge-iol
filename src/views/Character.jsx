@@ -20,6 +20,8 @@ export default function Character() {
         </Button>
       </NavBar>
 
+      <h2 className="text-center text-white mt-3 glass-title m-auto pt-1 pb-2">{character?.name}</h2>
+
       <Container className="d-flex">
         <CharacterDetail character={character} />
         <div className="position-absolute" style={{ top: '50vh', left: '50%' }}>

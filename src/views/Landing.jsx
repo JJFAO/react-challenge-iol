@@ -53,7 +53,7 @@ export default function Landing() {
       </NavBar>
 
       <div className="container" style={{ minHeight: '80vh' }}>
-        <h2 className="text-center mt-3">Personajes</h2>
+        <h2 className="text-center text-white mt-3 glass-title m-auto pt-1 pb-2">Personajes</h2>
         <div className="d-flex flex-wrap justify-content-center align-items-center">
           {/* Characters cards ↓ */}
           {characters.map((char) => (

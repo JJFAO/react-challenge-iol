@@ -29,7 +29,7 @@ export default function Favorites() {
       </NavBar>
 
       <Container style={{ minHeight: '80vh' }}>
-        <h2 className="text-center mt-3">Favoritos</h2>
+        <h2 className="text-center text-white mt-3 glass-title m-auto pt-1 pb-2">Favoritos</h2>
         <div className="d-flex flex-wrap justify-content-center">
           {/* Favorite Characters cards ↓ */}
           {characters.map((char) => (

@@ -5,7 +5,7 @@ export default function CharacterDetail({ character }) {
   const imageUrl = `https://rickandmortyapi.com/api/character/avatar/${id}.jpeg`;
 
   return (
-    <Card className="mx-auto my-4" style={{ width: '32rem' }}>
+    <Card className="mx-auto my-4 p-1 glass-card text-light" style={{ width: '32rem' }}>
       <Ratio aspectRatio={1 / 1.001}>
         <Card.Img variant="top" src={imageUrl} />
       </Ratio>

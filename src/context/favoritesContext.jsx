@@ -20,7 +20,6 @@ function useFavorites() {
 
   const toggleFavorite = (favId) => {
     const isFavored = favorites.some((fav) => fav === favId);
-    console.log("🚀 - toggleFavorite - isFavored", isFavored);
     if (isFavored) {
       removeFavorite(favId);
     } else {
