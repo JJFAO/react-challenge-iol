@@ -10,3 +10,8 @@
   filter: brightness(1.2) blur(1px) brightness(0) opacity(0.5);
   position: absolute;
 }
+
+.glass-card .card-img-top {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}

@@ -1,5 +1,5 @@
-import Routes from './Routes';
 import './App.scss';
+import Routes from './Routes';
 import { FavoritesProvider } from 'context/favoritesContext';
 
 function App() {

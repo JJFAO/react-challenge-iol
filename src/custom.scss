@@ -1,20 +1,17 @@
 $body-bg: #44c0b54d;
 // $body-bg: hsla(266, 61%, 50%, 0.129);
 
-$primary: rgb(120, 55, 206);
+$primary: #a247bb;
 $success: rgb(14, 128, 67);
 $danger: rgb(201, 53, 27);
 $secondary: rgb(101, 125, 173);
 
 @import "~bootstrap/scss/bootstrap";
 
+h5, .h5{
+  font-size: 1.5rem;
+}
 
-.bg-Dead {
-    @extend .bg-danger;
-}
-.bg-Alive {
-  @extend .bg-success;
-}
-.bg-unknown {
-  @extend .bg-secondary;
+:root {
+  --bs-primary: #31c204;
 }

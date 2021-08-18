@@ -1,16 +1,66 @@
 @import "custom";
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bg-Dead {
+  @extend .bg-danger;
+}
+.bg-Alive {
+  @extend .bg-success;
+}
+.bg-unknown {
+  @extend .bg-secondary;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  font-family: "NewYork";
+  background-image:  linear-gradient(to right, #8e2de247, #4a00e066), url("./assets/Rick-and-morty.png");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+p,
+span {
+  font-family: "cream";
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(193, 162, 243, 0.3);
+  background-color: #dacbf0f3;
+}
+body::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5effd;
+}
+body::-webkit-scrollbar-thumb {
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.44, rgb(136, 122, 217)),
+    color-stop(0.72, rgb(90, 73, 189)),
+    color-stop(0.86, rgb(70, 36, 149))
+  );
+}
+
+.glass-card {
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  background-color: #111928b0;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.glass-title {
+  @extend .glass-card;
+  width: 15rem;
+}
+
+
+// Fonts
+@font-face {
+  font-family: "NewYork";
+  src: url("./assets/KGEverSinceNewYork.ttf") format("truetype");
+}
+@font-face {
+  font-family: "cream";
+  src: url("./assets/cream-DEMO.ttf") format("truetype");
 }
