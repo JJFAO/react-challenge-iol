@@ -8,6 +8,7 @@ import { useFetchAll } from 'hooks/useFetch';
 import SelectLocation from 'components/SelectLocation';
 import { useFavoritesContext } from '../context/favoritesContext';
 import { useScrollToTopOnMount } from 'hooks/useScrollToTop';
+import { Card } from 'react-bootstrap';
 
 export default function Landing() {
   useScrollToTopOnMount();
@@ -64,6 +65,13 @@ export default function Landing() {
               isFavorite={isFavorite(char.id)}
             />
           ))}
+
+          {/* No results message ↓ */}
+          {!characters.length && !isLoadingCharacters && (
+            <Card className="glass-card text-white-50 p-5 mt-5">
+              <Card.Title>Sin resultados</Card.Title>
+            </Card>
+          )}
 
           <div className="position-absolute center-spinner">
             {<SpinLoader size="lg" isLoading={isLoadingCharacters} />}

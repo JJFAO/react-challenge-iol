@@ -49,6 +49,13 @@ select::-webkit-scrollbar-thumb {
   background: blueviolet;
 }
 
+// Footer fix
+.footer-fix {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 // Glassmorphism
 .glass-card {
   backdrop-filter: blur(10px) saturate(180%);

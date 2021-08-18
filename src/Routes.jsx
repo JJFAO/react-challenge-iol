@@ -8,25 +8,29 @@ import NotFound from 'views/NotFound';
 export default function Routes() {
   return (
     <Router>
-      <Switch>
-        <Route path="/" exact>
-          <Landing />
-        </Route>
+      <div className="footer-fix">
+        <Switch>
+          <Route path="/" exact>
+            <Landing />
+          </Route>
 
-        <Route path="/character/:charId" exact>
-          <Character />
-        </Route>
+          <Route path="/character/:charId" exact>
+            <Character />
+          </Route>
 
-        <Route path="/favorites" exact>
-          <Favorites />
-        </Route>
+          <Route path="/favorites" exact>
+            <Favorites />
+          </Route>
 
-        <Route path="*">
-          <NotFound />
-        </Route>
-      </Switch>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
 
-      <Footer />
+        <div className="mt-auto">
+        <Footer />
+        </div>
+      </div>
     </Router>
   );
 }

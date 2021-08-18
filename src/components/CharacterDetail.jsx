@@ -13,9 +13,9 @@ export default function CharacterDetail({ character }) {
       <Card.Body>
         <Card.Title title={name} className="text-truncate">{name}</Card.Title>
 
-        <p title={species} className="text-truncate"><span>Especie: </span> {species}</p>
-        <p title={origin?.name} className="text-truncate"><span>Origen: </span>{origin?.name}</p>
-        <p title={location?.name} className="text-truncate"><span>Localización: </span>{location?.name}</p>
+        <p title={species} className="text-truncate"><span className="text-info">Especie: </span> {species}</p>
+        <p title={origin?.name} className="text-truncate"><span className="text-info">Origen: </span>{origin?.name}</p>
+        <p title={location?.name} className="text-truncate"><span className="text-info">Localización: </span>{location?.name}</p>
       </Card.Body>
 
       <Card.Footer>

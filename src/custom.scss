@@ -5,6 +5,7 @@ $primary: #a247bb;
 $success: rgb(14, 128, 67);
 $danger: rgb(201, 53, 27);
 $secondary: rgb(101, 125, 173);
+$info: rgba(241, 241, 73, 0.945);
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -12,6 +13,3 @@ h5, .h5{
   font-size: 1.5rem;
 }
 
-:root {
-  --bs-primary: #31c204;
-}

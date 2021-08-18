@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom';
-import { Button, Container } from 'react-bootstrap';
+import { Button, Card, Container } from 'react-bootstrap';
 import NavBar from 'components/NavBar';
 import backIcon from '../assets/back.svg';
 import { useFetch } from 'hooks/useFetch';
@@ -40,6 +40,13 @@ export default function Favorites() {
               isFavorite={isFavorite(char.id)}
             />
           ))}
+
+          {/* No results message ↓ */}
+          {!characters.length && !isLoading && (
+            <Card className="glass-card text-white-50 p-5 mt-5">
+              <Card.Title>Aún no tienes ningún favorito</Card.Title>
+            </Card>
+          )}
 
           <div className="position-absolute center-spinner">
             {<SpinLoader size="lg" isLoading={isLoading} />}
