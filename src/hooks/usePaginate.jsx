@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useQueryParam } from './useQueryParam';
 
 export function usePaginate(allResults, filterCb) {
   const [results, setResults] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
-  const [page, setPage] = useState(1);
+  const [page = 1, setPage] = useQueryParam('page');
   const [limit, setLimit] = useState(15);
 
   const resultsFiltered = useMemo(() => allResults.filter(filterCb), [allResults, filterCb]);
@@ -21,5 +22,7 @@ export function usePaginate(allResults, filterCb) {
     setTotalPages(totalPages);
   }, [resultsFiltered, limit]);
 
-  return { results, page, setPage, limit, setLimit, totalPages };
+  const pageNumber = useMemo(() => parseInt(page), [page]);
+
+  return { results, page: pageNumber, setPage, limit, setLimit, totalPages };
 }
