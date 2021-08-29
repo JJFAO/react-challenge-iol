@@ -1,46 +1,32 @@
-import { useEffect, useState } from 'react';
-import CharacterCard from 'components/CharacterCard';
-import { API_URL } from 'config/api';
-import NavBar from 'components/NavBar';
-import Pagination from 'components/Pagination';
-import SpinLoader from 'components/SpinLoader';
-import { useFetchAll } from 'hooks/useFetch';
-import SelectLocation from 'components/SelectLocation';
+import { useCallback, useState } from 'react';
+import { API_URL } from '../config/api';
+import { useFetchAll } from '../hooks/useFetch';
 import { useFavoritesContext } from '../context/favoritesContext';
-import { useScrollToTopOnMount } from 'hooks/useScrollToTop';
+import { useScrollToTopOnMount } from '../hooks/useScrollToTop';
+import { usePaginate } from '../hooks/usePaginate';
+// Components
 import { Card } from 'react-bootstrap';
+import SelectLocation from '../components/SelectLocation';
+import CharacterCard from '../components/CharacterCard';
+import NavBar from '../components/NavBar';
+import Pagination from '../components/Pagination';
+import SpinLoader from '../components/SpinLoader';
 
-export default function Landing() {
+export default function Home() {
   useScrollToTopOnMount();
-  const [characters, setCharacters] = useState([]);
   const [locations, isLoadingLocations] = useFetchAll(`${API_URL}/location`);
   const [allCharacters, isLoadingCharacters] = useFetchAll(`${API_URL}/character`);
-  const [totalPages, setTotalPages] = useState(0);
-  const [page, setPage] = useState(1);
   const [location, setLocation] = useState('');
+  const filterByLocation = useCallback((char) => !location || char.location.name === location, [location]);
+  const { results: characters, page, setPage, totalPages, /* limit, setLimit */ } = usePaginate(allCharacters, filterByLocation);
   const { toggleFavorite, favorites } = useFavoritesContext();
-
-  useEffect(() => {
-    const limit = 15;
-    const start = 0 + page * limit - limit;
-    const end = start + limit;
-
-    const charactersFiltered = allCharacters.filter((char) => !location || char.location.name === location);
-    const charactersSlice = charactersFiltered.slice(start, end);
-    setCharacters(charactersSlice);
-
-    const totalPages = Math.ceil(charactersFiltered.length / limit);
-    setTotalPages(totalPages);
-  }, [allCharacters, page, location]);
 
   const handleSelect = (value) => {
     setPage(1);
     setLocation(value);
   };
 
-  const isFavorite = (id) => {
-    return favorites.some((fav) => fav === id);
-  };
+  const isFavorite = (id) => favorites.includes(id);
 
   return (
     <>

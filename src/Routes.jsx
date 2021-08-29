@@ -1,9 +1,9 @@
-import Footer from 'components/Footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Character from 'views/Character';
-import Favorites from 'views/Favorites';
-import Landing from 'views/Landing';
-import NotFound from 'views/NotFound';
+import Character from './views/Character';
+import Favorites from './views/Favorites';
+import Home from './views/Home';
+import NotFound from './views/NotFound';
+import Footer from './components/Footer';
 
 export default function Routes() {
   return (
@@ -11,7 +11,7 @@ export default function Routes() {
       <div className="footer-fix">
         <Switch>
           <Route path="/" exact>
-            <Landing />
+            <Home />
           </Route>
 
           <Route path="/character/:charId" exact>

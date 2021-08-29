@@ -1,6 +1,7 @@
 import { Badge, Button, Card, Ratio } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './characterCard.scss'
+import './characterCard.scss';
+// Images
 import starFilled from '../assets/starFilled.svg';
 import starEmpty from '../assets/starEmpty.svg';
 

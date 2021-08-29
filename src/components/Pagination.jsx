@@ -1,4 +1,4 @@
-import { scrollToTop } from 'hooks/useScrollToTop';
+import { scrollToTop } from '../hooks/useScrollToTop';
 import SpinLoader from './SpinLoader';
 
 export default function Pagination({ currentPage = 1, totalPages = 0, onSetPage, isLoading }) {

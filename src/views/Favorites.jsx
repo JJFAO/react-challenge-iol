@@ -1,13 +1,15 @@
 import { useHistory } from 'react-router-dom';
-import { Button, Card, Container } from 'react-bootstrap';
-import NavBar from 'components/NavBar';
-import backIcon from '../assets/back.svg';
-import { useFetch } from 'hooks/useFetch';
-import { API_URL } from 'config/api';
-import CharacterCard from 'components/CharacterCard';
-import SpinLoader from 'components/SpinLoader';
+import { API_URL } from '../config/api';
+import { useFetch } from '../hooks/useFetch';
+import { useScrollToTopOnMount } from '../hooks/useScrollToTop';
 import { useFavoritesContext } from '../context/favoritesContext';
-import { useScrollToTopOnMount } from 'hooks/useScrollToTop';
+//Components
+import { Button, Card, Container } from 'react-bootstrap';
+import NavBar from '../components/NavBar';
+import CharacterCard from '../components/CharacterCard';
+import SpinLoader from '../components/SpinLoader';
+//Images
+import backIcon from '../assets/back.svg';
 
 export default function Favorites() {
   useScrollToTopOnMount();
