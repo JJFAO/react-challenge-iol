@@ -11,13 +11,14 @@ import CharacterCard from '../components/CharacterCard';
 import NavBar from '../components/NavBar';
 import Pagination from '../components/Pagination';
 import SpinLoader from '../components/SpinLoader';
+import { useQueryParam } from '../hooks/useQueryParam';
 
 export default function Home() {
   useScrollToTopOnMount();
   const [locations, isLoadingLocations] = useFetchAll(`${API_URL}/location`);
   const [allCharacters, isLoadingCharacters] = useFetchAll(`${API_URL}/character`);
-  const [location, setLocation] = useState('');
-  const filterByLocation = useCallback((char) => !location || char.location.name === location, [location]);
+  const [location = '', setLocation] = useQueryParam('locations');
+  const filterByLocation = useCallback((char) => !location || location === char.location.name, [location]);
   const { results: characters, page, setPage, totalPages, /* limit, setLimit */ } = usePaginate(allCharacters, filterByLocation);
   const { toggleFavorite, favorites } = useFavoritesContext();
 

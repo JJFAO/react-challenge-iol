@@ -1,25 +1,22 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useQueryParam } from './useQueryParam';
 
 export function usePaginate(allResults, filterCb) {
-  const [results, setResults] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
   const [page = 1, setPage] = useQueryParam('page');
-  const [limit, setLimit] = useState(15);
+  const [limit = 15, setLimit] = useQueryParam('limit');
 
   const resultsFiltered = useMemo(() => allResults.filter(filterCb), [allResults, filterCb]);
 
-  useEffect(() => {
+  const results = useMemo(() => {
     const start = 0 + page * limit - limit;
     const end = start + limit;
 
     const resultsSlice = resultsFiltered.slice(start, end);
-    setResults(resultsSlice);
+    return resultsSlice;
   }, [resultsFiltered, page, limit]);
 
-  useEffect(() => {
-    const totalPages = Math.ceil(resultsFiltered.length / limit);
-    setTotalPages(totalPages);
+  const totalPages = useMemo(() => {
+    return Math.ceil(resultsFiltered.length / limit);
   }, [resultsFiltered, limit]);
 
   const pageNumber = useMemo(() => parseInt(page), [page]);

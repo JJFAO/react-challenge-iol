@@ -5,7 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom';
   @param {string} name Query param name to search.
   @returns The value of the searched query param and a function to update it.*/
 export function useQueryParam(name) {
-  const { replace } = useHistory();
+  const history = useHistory();
   const { search } = useLocation();
 
   const queryParam = useMemo(() => {
@@ -14,15 +14,13 @@ export function useQueryParam(name) {
 
   const setQueryParam = useCallback((value) => {
     let searchParams = new URLSearchParams(search); // returns the existing query string: '?page=1&location=earth'
+    const shouldDelete = value === '' || value === undefined || value === null;
 
-    if (value ?? true) searchParams.set(name, value);
-    else searchParams.delete(name);
+    if (shouldDelete) searchParams.delete(name);
+    else searchParams.set(name, value);
 
-    // const method = value ?? true ? 'set' : 'delete';
-    // searchParams[method](name, value);
-
-    replace({ search: searchParams.toString() });
-  }, [search, name, replace]);
+    history.replace({ search: searchParams.toString() });
+  }, [search, name, history]);
 
   return [queryParam, setQueryParam];
 }
