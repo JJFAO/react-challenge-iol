@@ -2,14 +2,7 @@ import { FormSelect } from 'react-bootstrap';
 import { scrollToTop } from '../hooks/useScrollToTop';
 import SpinLoader from './SpinLoader';
 
-export default function Pagination({
-  currentPage = 1,
-  totalPages = 0,
-  onSetPage,
-  limit,
-  onSetLimit,
-  isLoading,
-}) {
+export default function Pagination({ currentPage = 1, totalPages = 0, onSetPage, limit, onSetLimit, isLoading }) {
   const handleSetPage = (n) => {
     scrollToTop();
     onSetPage(n);
