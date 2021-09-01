@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { API_URL } from '../config/api';
 import { useFetchAll } from '../hooks/useFetch';
 import { useFavoritesContext } from '../context/favoritesContext';
@@ -19,7 +19,7 @@ export default function Home() {
   const [allCharacters, isLoadingCharacters] = useFetchAll(`${API_URL}/character`);
   const [location = '', setLocation] = useQueryParam('locations');
   const filterByLocation = useCallback((char) => !location || location === char.location.name, [location]);
-  const { results: characters, page, setPage, totalPages, /* limit, setLimit */ } = usePaginate(allCharacters, filterByLocation);
+  const { results: characters, page, setPage, totalPages, limit, setLimit } = usePaginate(allCharacters, filterByLocation, { limit: 15 });
   const { toggleFavorite, favorites } = useFavoritesContext();
 
   const handleSelect = (value) => {
@@ -71,6 +71,8 @@ export default function Home() {
         totalPages={totalPages}
         onSetPage={setPage}
         isLoading={isLoadingCharacters}
+        limit={limit}
+        onSetLimit={setLimit}
       />
     </>
   );

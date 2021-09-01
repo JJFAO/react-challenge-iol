@@ -1,15 +1,15 @@
 import { useMemo } from 'react';
 import { useQueryParam } from './useQueryParam';
 
-export function usePaginate(allResults, filterCb) {
+export function usePaginate(allResults, filterCb, initialValues) {
   const [page = 1, setPage] = useQueryParam('page');
-  const [limit = 15, setLimit] = useQueryParam('limit');
+  const [limit = initialValues.limit || 8, setLimit] = useQueryParam('limit');
 
   const resultsFiltered = useMemo(() => allResults.filter(filterCb), [allResults, filterCb]);
 
   const results = useMemo(() => {
     const start = 0 + page * limit - limit;
-    const end = start + limit;
+    const end = start + parseInt(limit);
 
     const resultsSlice = resultsFiltered.slice(start, end);
     return resultsSlice;
