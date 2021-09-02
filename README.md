@@ -6,4 +6,8 @@
 
 **API used:** https://rickandmortyapi.com/
 
-**Functionalities:** characters displayed with filter by location - results paginated with selectable number of items per page - add and display user's favorites characters
+**Functionalities:** 
+
+- characters displayed with filter by location
+- results paginated with selectable number of items per page
+- add and display user's favorites characters
