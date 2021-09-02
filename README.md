@@ -10,4 +10,5 @@
 
 - characters displayed with filter by location
 - results paginated with selectable number of items per page
+- filter and pagination data passed through url query params
 - add and display user's favorites characters
