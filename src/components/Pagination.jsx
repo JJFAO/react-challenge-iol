@@ -1,11 +1,17 @@
-import { scrollToTop } from 'hooks/useScrollToTop';
+import { FormSelect } from 'react-bootstrap';
+import { scrollToTop } from '../hooks/useScrollToTop';
 import SpinLoader from './SpinLoader';
 
-export default function Pagination({ currentPage = 1, totalPages = 0, onSetPage, isLoading }) {
+export default function Pagination({ currentPage = 1, totalPages = 0, onSetPage, limit, onSetLimit, isLoading }) {
   const handleSetPage = (n) => {
     scrollToTop();
     onSetPage(n);
   };
+
+  const handleLimit = (e) => {
+    onSetLimit(e.target.value);
+  };
+
   const pagination = () => {
     const pages = [];
     let count = 0;
@@ -68,6 +74,12 @@ export default function Pagination({ currentPage = 1, totalPages = 0, onSetPage,
             {prevNext(currentPage + 1)}
           </ul>
         </nav>
+        <FormSelect className="ms-2" value={limit} onChange={handleLimit}>
+          <option>5</option>
+          <option>10</option>
+          <option>15</option>
+          <option>20</option>
+        </FormSelect>
         <div style={{ left: '100%' }} className="ms-1 position-absolute">
           <SpinLoader isLoading={isLoading} size="sm" />
         </div>

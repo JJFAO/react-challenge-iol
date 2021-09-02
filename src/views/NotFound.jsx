@@ -1,7 +1,9 @@
 import React from 'react';
-import { Button, Card, Image } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import NavBar from 'components/NavBar';
+//Components
+import { Button, Card, Image } from 'react-bootstrap';
+import NavBar from '../components/NavBar';
+//Images
 import backIcon from '../assets/back.svg';
 import notfound from '../assets/notfound.png';
 

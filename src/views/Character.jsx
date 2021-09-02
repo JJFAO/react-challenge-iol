@@ -1,11 +1,13 @@
-import CharacterDetail from 'components/CharacterDetail';
-import NavBar from 'components/NavBar';
-import { Button, Container } from 'react-bootstrap';
-import backIcon from '../assets/back.svg';
 import { useHistory, useParams } from 'react-router-dom';
-import { API_URL } from 'config/api';
-import { useFetch } from 'hooks/useFetch';
-import SpinLoader from 'components/SpinLoader';
+import { API_URL } from '../config/api';
+import { useFetch } from '../hooks/useFetch';
+//Components
+import { Button, Container } from 'react-bootstrap';
+import CharacterDetail from '../components/CharacterDetail';
+import NavBar from '../components/NavBar';
+import SpinLoader from '../components/SpinLoader';
+//Images
+import backIcon from '../assets/back.svg';
 
 export default function Character() {
   const history = useHistory();

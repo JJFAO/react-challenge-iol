@@ -2,14 +2,17 @@ import { Col, Container, Image, Row } from 'react-bootstrap';
 import logo from '../assets/icon.png';
 import github from '../assets/github.svg';
 import linkedin from '../assets/linkedin.svg';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-dark mt-4 py-3">
+    <footer className="bg-dark mt-4 py-4">
       <Container>
         <Row className="align-items-center" style={{ minHeight: '6rem' }}>
           <Col className="d-none d-md-block" md="4">
-            <Image src={logo} alt="logo" style={{ height: '5rem' }} />
+            <Link to="/404">
+              <Image src={logo} alt="logo" style={{ height: '5rem' }} />
+            </Link>
           </Col>
 
           <Col className="d-flex flex-column align-items-center mb-3 mb-md-0" md="4">
